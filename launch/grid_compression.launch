@@ -8,7 +8,7 @@
 		<param name="threshold_max" value="2.0"/>
 
 		<!-- Compression resolution (in meters) -->
-		<param name="resolution" value="0.01"/>
+		<param name="resolution" value="0.1"/>
 
 		<!-- PCL Topics -->
 		<param name="input_topic" value="/$(arg namespace)/camera/depth/color/points"/>
