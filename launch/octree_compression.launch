@@ -1,0 +1,18 @@
+<launch>
+
+	<arg name="namespace" default="Bilbo" />
+    <node pkg="pcl_compression" type="pcl_compression" name="pcl_compression" output="screen">
+
+		<!--Min/max thresholds (in meters) -->
+		<param name="threshold_min" value="0.2"/>
+		<param name="threshold_max" value="2.0"/>
+
+		<!-- Compression resolution (in meters) -->
+		<param name="resolution" value="0.01"/>
+
+		<!-- PCL Topics -->
+		<param name="input_topic" value="/$(arg namespace)/camera/depth/color/points"/>
+		<param name="out_topic" value="/$(arg namespace)/camera/depth/color/compressed_points"/>
+	</node>
+
+</launch>
