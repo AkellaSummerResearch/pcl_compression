@@ -29,6 +29,11 @@ public:
     nh_.getParam("max_distance", max_distance_);
     nh_.getParam("min_distance", min_distance_);
     nh_.getParam("drop_factor", drop_factor_);
+
+    if (drop_factor_ < 1) {
+      drop_factor_ = 1;
+      ROS_WARN("[pcl_compression] drop_factor has to be greater than or equal to 1. Setting drop_factor = 1");
+    }
     cur_idx_ = 0;
 
     pcl_sub_ = nh_.subscribe(input_topic_, 1, &PclCompression::pcl_callback, this);
@@ -48,11 +53,11 @@ public:
 
   void pcl_callback(const sensor_msgs::PointCloud2::ConstPtr &msg) {
     // Only execute the function when cur_idx == 0
-    if (cur_idx_ != 0) {
+    if (cur_idx_ == drop_factor_-1) {
+      cur_idx_ = 0;
+    } else {
       cur_idx_++;
       return;
-    } else if (cur_idx_ == drop_factor_-1) {
-      cur_idx_ = 0;
     }
 
     // Container for original & filtered data

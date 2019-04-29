@@ -1,6 +1,6 @@
 <launch>
 
-	<arg name="namespace" default="Bilbo" />
+	<arg name="namespace" default="Frodo" />
     <node pkg="pcl_compression" type="pcl_compression" name="pcl_compression" output="screen">
 
 		<!--Min/max thresholds (in meters) -->
@@ -16,7 +16,7 @@
 
 		<!-- Drop incoming messages by a factor given below -->
 		<!-- Example: If the value is 2, it will drop every other message -->
-		<param name="drop_factor" value="0.1"/>
+		<param name="drop_factor" value="3"/>
 
 		<!-- PCL Topics -->
 		<param name="input_topic" value="/$(arg namespace)/camera/depth/color/points"/>
