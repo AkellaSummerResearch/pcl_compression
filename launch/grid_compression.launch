@@ -11,7 +11,7 @@
 		<param name="resolution" value="0.1"/>
 
 		<!-- Compression based on maximum and minimum distances -->
-		<param name="min_distance" value="0.25"/>
+		<param name="min_distance" value="0.4"/>
 		<param name="max_distance" value="5.0"/>
 
 		<!-- Drop incoming messages by a factor given below -->
