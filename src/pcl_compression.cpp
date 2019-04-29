@@ -93,6 +93,8 @@ public:
     // Convert to ROS data type
     sensor_msgs::PointCloud2 output;
     pcl::toROSMsg(cloud_out, output);
+    output.header.stamp = msg->header.stamp;
+    output.header.frame_id = msg->header.frame_id;
 
     // Publish the data
     pcl_pub_.publish(output);
