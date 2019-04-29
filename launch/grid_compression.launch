@@ -10,6 +10,14 @@
 		<!-- Compression resolution (in meters) -->
 		<param name="resolution" value="0.1"/>
 
+		<!-- Compression based on maximum and minimum distances -->
+		<param name="min_distance" value="0.25"/>
+		<param name="max_distance" value="5.0"/>
+
+		<!-- Drop incoming messages by a factor given below -->
+		<!-- Example: If the value is 2, it will drop every other message -->
+		<param name="drop_factor" value="0.1"/>
+
 		<!-- PCL Topics -->
 		<param name="input_topic" value="/$(arg namespace)/camera/depth/color/points"/>
 		<param name="out_topic" value="/$(arg namespace)/camera/depth/color/compressed_points"/>
