@@ -1,11 +1,12 @@
 <launch>
 
-	<arg name="namespace" default="Frodo" />
+	<arg name="manager" default="realsense2_camera_manager"/>
 
-	<node pkg="nodelet" type="nodelet" args="manager"
-    name="sample_nodelet_manager" output="screen" />
+	<node pkg="nodelet" type="nodelet" 
+		args="load pcl_compression/PclCompression $(arg manager)" 
+		name="PclCompression_loader" 
+		output="screen">
 
-	<node pkg="nodelet" type="nodelet" args="load pcl_compression/PclCompression sample_nodelet_manager" name="PclCompression_loader" output="screen">
     	<!--Min/max thresholds (in meters) -->
 		<param name="threshold_min" value="0.2"/>
 		<param name="threshold_max" value="2.0"/>
