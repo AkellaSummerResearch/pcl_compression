@@ -1,0 +1,8 @@
+<library path="lib/libpcl_compression_nodelet">
+  <class name="pcl_compression/PclCompression" type="pcl_compression_ns::PclCompressionClass" 
+  		base_class_type="nodelet::Nodelet">
+		<description>
+		PclCompression nodelet.
+		</description>
+  </class>
+</library>

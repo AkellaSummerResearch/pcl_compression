@@ -9,6 +9,7 @@ add_compile_options(-std=c++11)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   cmake_modules
+  nodelet
   pcl_conversions
   pcl_ros
   roscpp
@@ -16,9 +17,11 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 catkin_package(
+  LIBRARIES ${PROJECT_NAME}
   CATKIN_DEPENDS
     roscpp
     cmake_modules
+    nodelet
 )
 
 ###########
@@ -34,6 +37,12 @@ include_directories(
 
 add_executable(pcl_compression src/pcl_compression.cpp)
 target_link_libraries(pcl_compression ${catkin_LIBRARIES})
+
+add_library(pcl_compression_nodelet src/pcl_compression_nodelet.cpp)
+target_link_libraries(pcl_compression_nodelet ${catkin_LIBRARIES})
+if(catkin_EXPORTED_LIBRARIES)
+  add_dependencies(pcl_compression_nodelet ${catkin_EXPORTED_LIBRARIES})
+endif()
 
 link_directories(
     ${PCL_LIBRARY_DIRS})
