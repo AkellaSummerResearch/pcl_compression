@@ -7,6 +7,7 @@
 
 #include "pcl_ros/point_cloud.h"
 #include <pcl/filters/voxel_grid.h>
+
 #include <nodelet/nodelet.h>
 #include <pluginlib/class_list_macros.h>
 
@@ -21,6 +22,7 @@ class PclCompressionClass : public nodelet::Nodelet {
   int drop_factor_;
   int cur_idx_;
   float min_distance_sqr_, max_distance_sqr_;
+  float min_distance_, max_distance_;
 
 public:
   PclCompressionClass();

@@ -2,22 +2,20 @@
 
 	<arg name="namespace" default="Frodo" />
 	<arg name="manager" default="realsense2_camera_manager"/>
+	<arg name="min_dist" default="0.4" />
+	<arg name="max_dist" default="3.0" />
 
 	<node pkg="nodelet" type="nodelet" 
 		args="load pcl_compression/PclCompression $(arg manager)" 
 		name="PclCompression_loader" 
 		output="screen">
 
-    	<!--Min/max thresholds (in meters) -->
-		<param name="threshold_min" value="0.2"/>
-		<param name="threshold_max" value="2.0"/>
-
 		<!-- Compression resolution (in meters) -->
 		<param name="resolution" value="0.1"/>
 
 		<!-- Compression based on maximum and minimum distances -->
-		<param name="min_distance" value="0.4"/>
-		<param name="max_distance" value="5.0"/>
+		<param name="min_distance" value="$(arg min_dist)"/>
+		<param name="max_distance" value="$(arg max_dist)"/>
 
 		<!-- Drop incoming messages by a factor given below -->
 		<!-- Example: If the value is 2, it will drop every other message -->

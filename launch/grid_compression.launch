@@ -3,16 +3,12 @@
 	<arg name="namespace" default="Frodo" />
     <node pkg="pcl_compression" type="pcl_compression" name="pcl_compression" output="screen">
 
-		<!--Min/max thresholds (in meters) -->
-		<param name="threshold_min" value="0.2"/>
-		<param name="threshold_max" value="2.0"/>
-
 		<!-- Compression resolution (in meters) -->
 		<param name="resolution" value="0.1"/>
 
 		<!-- Compression based on maximum and minimum distances -->
 		<param name="min_distance" value="0.4"/>
-		<param name="max_distance" value="5.0"/>
+		<param name="max_distance" value="3.0"/>
 
 		<!-- Drop incoming messages by a factor given below -->
 		<!-- Example: If the value is 2, it will drop every other message -->

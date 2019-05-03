@@ -5,15 +5,15 @@
 namespace pcl_compression_ns {
 
   PclCompressionClass::PclCompressionClass() {
-    ROS_INFO("PclCompressionClass Constructor");
+    // ROS_INFO("PclCompressionClass Constructor");
   };
 
   PclCompressionClass::~PclCompressionClass() {
-    ROS_INFO("PclCompressionClass Destructor");    
+    // ROS_INFO("PclCompressionClass Destructor");    
   }
 
   void PclCompressionClass::onInit() {
-    NODELET_INFO("PclCompressionClass NODELET_INFO - %s", __FUNCTION__);
+    // NODELET_INFO("PclCompressionClass NODELET_INFO - %s", __FUNCTION__);
     nh_ = getPrivateNodeHandle();
 
     float min_distance, max_distance;
@@ -29,6 +29,8 @@ namespace pcl_compression_ns {
       NODELET_WARN("[pcl_compression] drop_factor has to be greater than or equal to 1. Setting drop_factor = 1");
     }
     cur_idx_ = 0;
+    min_distance_ = min_distance;
+    max_distance_ = max_distance;
     min_distance_sqr_ = min_distance*min_distance;
     max_distance_sqr_ = max_distance*max_distance;
 
@@ -66,7 +68,12 @@ namespace pcl_compression_ns {
     pcl::VoxelGrid<pcl::PCLPointCloud2> grid;
     grid.setInputCloud(cloudPtr);
     grid.setLeafSize(resolution_, resolution_, resolution_);
-    // grid.setFilterLimits(min_distance_, max_distance_);
+    grid.setFilterFieldName ("x");
+    grid.setFilterLimits(min_distance_, max_distance_);
+    grid.setFilterFieldName ("y");
+    grid.setFilterLimits(min_distance_, max_distance_);
+    grid.setFilterFieldName ("z");
+    grid.setFilterLimits(min_distance_, max_distance_);
     grid.filter(cloud_filtered);
 
     // Perform min/max distance filtering
