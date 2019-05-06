@@ -3,7 +3,7 @@
 	<arg name="namespace" default="Frodo" />
 	<arg name="manager" default="realsense2_camera_manager"/>
 	<arg name="min_dist" default="0.4" />
-	<arg name="max_dist" default="3.0" />
+	<arg name="max_dist" default="4.0" />
 
 	<node pkg="nodelet" type="nodelet" 
 		args="load pcl_compression/PclCompression $(arg manager)" 
