@@ -1,11 +1,11 @@
 <launch>
 
 	<arg name="namespace" default="Frodo" />
-	<arg name="manager" default="realsense2_camera_manager"/>
+	<arg name="manager" default="camera_nodelet_manager"/>
 	<arg name="min_dist" default="0.4" />
 	<arg name="max_dist" default="4.0" />
-	<arg name="input_topic" default="/$(arg namespace)/camera/depth/color/points" />
-	<arg name="out_topic" default="/$(arg namespace)/camera/depth/color/compressed_points" />
+	<arg name="input_topic" default="/$(arg namespace)/camera/depth/points" />
+	<arg name="out_topic" default="/$(arg namespace)/camera/depth/compressed_points" />
 
 	<node pkg="nodelet" type="nodelet" 
 		args="load pcl_compression/PclCompression $(arg manager)" 

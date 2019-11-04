@@ -1,22 +1,27 @@
 <launch>
 
-	<arg name="namespace" default="Frodo" />
+	<arg name="namespace" default="Sauron" />
+	<arg name="min_dist" default="0.4" />
+	<arg name="max_dist" default="4.0" />
+	<arg name="input_topic" default="/$(arg namespace)/camera/depth/points" />
+	<arg name="out_topic" default="/$(arg namespace)/camera/depth/compressed_points" />
+
     <node pkg="pcl_compression" type="pcl_compression" name="pcl_compression" output="screen">
 
 		<!-- Compression resolution (in meters) -->
 		<param name="resolution" value="0.1"/>
 
 		<!-- Compression based on maximum and minimum distances -->
-		<param name="min_distance" value="0.4"/>
-		<param name="max_distance" value="3.0"/>
+		<param name="min_distance" value="$(arg min_dist)"/>
+		<param name="max_distance" value="$(arg max_dist)"/>
 
 		<!-- Drop incoming messages by a factor given below -->
 		<!-- Example: If the value is 2, it will drop every other message -->
 		<param name="drop_factor" value="3"/>
 
 		<!-- PCL Topics -->
-		<param name="input_topic" value="/$(arg namespace)/camera/depth/color/points"/>
-		<param name="out_topic" value="/$(arg namespace)/camera/depth/color/compressed_points"/>
+		<param name="input_topic" value="$(arg input_topic)"/>
+		<param name="out_topic" value="$(arg out_topic)"/>
 	</node>
 
 </launch>
